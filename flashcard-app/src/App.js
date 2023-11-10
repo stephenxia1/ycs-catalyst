@@ -2,6 +2,15 @@ import Flashcard from "./Flashcard";
 import './App.css';
 import ".styles.scss";
 
+const cards = [
+  {
+    id: "1",
+    variant: "click",
+    front: "testfront",
+    back: "testback"
+  },
+];
+
 export default function App() {
   return (
     <div className="container">
