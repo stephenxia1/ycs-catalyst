@@ -1,4 +1,6 @@
 import Flashcard from "./Flashcard";
+import FlashcardList from "./FlashcardList";
+import React, { useState } from "react";
 import './App.css';
 import ".styles.scss";
 
@@ -24,3 +26,33 @@ export default function App() {
     </div>
   );
 }
+
+  const addFlashcard = () => {
+    const newFlashcard = { front: "New Front", back: "New Back", variant: "click" };
+    setFlashcards([...flashcards, newFlashcard]);
+  };
+
+  const removeFlashcard = (index) => {
+    const newFlashcards = [...flashcards];
+    newFlashcards.splice(index, 1);
+    setFlashcards(newFlashcards);
+  };
+
+  return (
+    <div className="app">
+      <h1>Flashcard App</h1>
+      <FlashcardList flashcards={flashcards} />
+      <div>
+        <button onClick={addFlashcard}>Add Flashcard</button>
+      </div>
+      {flashcards.length > 0 && (
+        <div>
+          <p>Click on a flashcard to remove it:</p>
+          <FlashcardList
+            flashcards={flashcards}
+            onFlashcardClick={(index) => removeFlashcard(index)}
+          />
+        </div>
+      )}
+    </div>
+  );
